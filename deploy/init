@@ -1,0 +1,11 @@
+#!/bin/bash
+
+USER="deploy"
+GROUP="deploy"
+HOME="/custom"
+
+groupadd $GROUP -f
+id $USER &>/dev/null || useradd -g $GROUP -c 'Created by AWS Code Deploy' -m -d $HOME -s /sbin/nologin $USER
+usermod -L $USER
+usermod -s /bin/bash $USER
+chmod 711 $HOME

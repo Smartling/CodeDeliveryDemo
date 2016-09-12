@@ -1,0 +1,26 @@
+version: 0.0
+os: linux
+files:
+  - source: /scripts
+    destination: /custom/scripts
+    overwrite: yes
+  - source: /files/deploy_previous_revision.rb
+    destination: /usr/local/bin/deploy_previous_revision
+    overwrite: yes
+permissions:
+  - object: /custom/
+    pattern: "**"
+    owner: deploy
+    group: deploy
+  - object: /usr/local/bin/deploy_previous_revision
+    mode: 755
+hooks:
+  BeforeInstall:
+    - location: deploy/init
+      timeout: 100
+      runas: root
+  AfterInstall:
+    - location: deploy/cron
+      timeout: 900
+      runas: deploy
+
