@@ -4,6 +4,9 @@ files:
   - source: /scripts
     destination: /custom/scripts
     overwrite: yes
+  - source: /puppet
+    destination: /custom/puppet
+    overwrite: yes
   - source: /files/deploy_previous_revision.rb
     destination: /usr/local/bin/deploy_previous_revision
     overwrite: yes

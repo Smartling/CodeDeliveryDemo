@@ -2,4 +2,4 @@
 
 PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/aws/bin:/root/bin"
 
-puppet apply /custom/scripts/puppet/cron.pp
+puppet apply /custom/puppet/cron.pp
