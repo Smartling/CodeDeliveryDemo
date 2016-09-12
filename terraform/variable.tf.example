@@ -6,6 +6,10 @@ variable "instance_role_name" {
   default = ""
 }
 
+variable "key_name" {
+  default = ""
+}
+
 variable "region" {
   default = "us-east-1"
 }
