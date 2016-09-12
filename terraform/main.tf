@@ -216,3 +216,10 @@ resource "aws_iam_user_policy" "github_user" {
 }
 EOF
 }
+
+output "access_key_secrets" {
+  value = "${aws_iam_access_key.github_user.secret}"
+}
+output "access_key" {
+  value = "${aws_iam_access_key.github_user.id}"
+}
