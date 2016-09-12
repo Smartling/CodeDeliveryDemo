@@ -1,19 +1,24 @@
 variable "app_name" {
-  default = ""
+  description = "Application name"
+  default     = ""
 }
 
 variable "instance_role_name" {
-  default = ""
+  description = "Name of instance role which will give possibility to run deployment of your application"
+  default     = ""
 }
 
 variable "key_name" {
-  default = ""
+  description = "Name of your ssh key"
+  default     = ""
 }
 
 variable "region" {
-  default = "us-east-1"
+  description = "AWS region"
+  default     = "us-east-1"
 }
 
 variable "account_id" {
-  default = ""
+  description = "ID of your AWs account"
+  default     = ""
 }
