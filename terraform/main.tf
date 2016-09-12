@@ -104,7 +104,16 @@ resource "aws_iam_role_policy" "demo_instance_policy" {
             "Effect": "Allow",
             "Action": "codedeploy:CreateDeployment",
             "Resource": "arn:aws:codedeploy:${var.region}:${var.account_id}:deploymentgroup:${var.app_name}/${aws_codedeploy_deployment_group.demo.deployment_group_name}"
-        }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+              "s3:Get*",
+              "s3:List*"
+            ],
+            "Resource": "*"
+        } 
+
     ]
 }
 EOF
@@ -128,4 +137,23 @@ resource "aws_iam_role" "demo_instance_role" {
   ]
 }
 EOF
+}
+
+# EC2 instance setup
+
+resource "aws_iam_instance_profile" "iam_profile" {
+    name = "${var.instance_role_name}"
+    roles = ["${aws_iam_role.demo_instance_role.name}"]
+}
+
+resource "aws_instance" "instance" {
+  ami = "ami-6869aa05"
+  instance_type = "t2.nano"
+  key_name = "SmartlingDPavlov"
+  security_groups = ["launch-wizard-7"]
+  iam_instance_profile = "${var.instance_role_name}"
+  user_data = "${file("user_data")}"
+  tags {
+    Name = "${var.app_name}"  
+  }
 }
