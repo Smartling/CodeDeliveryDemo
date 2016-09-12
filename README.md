@@ -28,7 +28,14 @@ You can use triggers for notification via SNS
 
 ####For private github repos
 
-Use "Reconnect to GitHub" on "Create New Deployment" page and you have to add in github repo settings (Webhooks & services) a service "AWS CodeDeploy"
+Use "Reconnect to GitHub" on "Create New Deployment" page and you have to add in github repo settings (Webhooks & services) service "AWS CodeDeploy"
+![codedeploy_service](images/github_codedeploy.jpg)
+Create a token in your account settings in "Personal access tokens". Add service "GitHub Auto-Deployment" in github repo settings (Webhooks & services)
+![create_token](images/github_token.jpg)
+After creation this GitHub services their states will be off
+![github_services_state_before_first_deploy](images/github_services.jpg)
+but after first commit they should be activated
+![github_services_state_after_first_deploy](images/github_services_on.jpg)
 
 ####Deploy previous revision
 
