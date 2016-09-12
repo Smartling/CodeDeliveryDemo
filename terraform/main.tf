@@ -112,7 +112,7 @@ resource "aws_iam_role_policy" "demo_instance_policy" {
               "s3:List*"
             ],
             "Resource": "*"
-        } 
+        }
 
     ]
 }
@@ -157,4 +157,62 @@ resource "aws_instance" "instance" {
   tags {
     Name = "${var.app_name}"
   }
+}
+
+# User for GitHub
+
+resource "aws_iam_user" "github_user" {
+  name = "${var.app_name}_for_github"
+  path = "/"
+}
+
+resource "aws_iam_access_key" "github_user" {
+  user = "${aws_iam_user.github_user.name}"
+}
+
+resource "aws_iam_user_policy" "github_user" {
+  name = "${var.app_name}_for_github"
+  user = "${aws_iam_user.github_user.name}"
+
+  policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "codedeploy:GetDeploymentConfig",
+            "Resource": "arn:aws:codedeploy:${var.region}:${var.account_id}:deploymentconfig:*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "codedeploy:RegisterApplicationRevision",
+            "Resource": "arn:aws:codedeploy:${var.region}:${var.account_id}:application:${var.app_name}"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "codedeploy:GetApplicationRevision",
+            "Resource": "arn:aws:codedeploy:${var.region}:${var.account_id}:application:${var.app_name}"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "codedeploy:ListApplicationRevisions",
+            "Resource": "arn:aws:codedeploy:${var.region}:${var.account_id}:*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "codedeploy:CreateDeployment",
+            "Resource": "arn:aws:codedeploy:${var.region}:${var.account_id}:deploymentgroup:${var.app_name}/${aws_codedeploy_deployment_group.demo.deployment_group_name}"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+              "s3:Get*",
+              "s3:List*"
+            ],
+            "Resource": "*"
+        }
+
+    ]
+}
+EOF
 }
