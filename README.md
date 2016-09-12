@@ -14,6 +14,8 @@ We have some scripts in [scripts](scripts) directory. We have to deliver them in
 
 First deployment must by done in AWS console manually
 
+![first_revision](images/terraform_demo.jpg)
+
 All your deployment process have to be described into [appspec file](http://docs.aws.amazon.com/codedeploy/latest/userguide/how-to-add-appspec-file.html) which placed with your code
 
 ####Deploy revision
