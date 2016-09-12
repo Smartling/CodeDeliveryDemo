@@ -1,4 +1,4 @@
-#Example of Code Delivery via AWS CodeDeploy
+#Example of code delivery via AWS CodeDeploy
 
 ##Condition
 
