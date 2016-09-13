@@ -8,7 +8,7 @@ files:
     destination: /custom/puppet
     overwrite: yes
   - source: /files/deploy_previous_revision
-    destination: /usr/local/bin/deploy_previous_revision
+    destination: /usr/local/bin
     overwrite: yes
 permissions:
   - object: /custom/
