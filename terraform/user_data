@@ -7,3 +7,4 @@ chmod +x ./install
 ./install auto
 rm -f ./install
 yum install -y puppet
+gem install aws-sdk-core
