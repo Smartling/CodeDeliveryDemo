@@ -1,3 +1,9 @@
+Cron {
+  environment => [
+    'MAILTO=foobar',
+  ],
+}
+
 cron { 'cron1':
   command => '/bin/sh /custom/scripts/script1.sh',
   minute  => '*/15',
