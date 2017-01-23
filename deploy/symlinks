@@ -7,10 +7,15 @@ TMP_REV=/custom/.scripts~
 
 mkdir ${REVS_DIR}
 mv ${TMP_REV} ${NEW_REV}
-OLD_REV=`readlink -nf ${DEST}`
-ln -s ${NEW_REV} ${DEST}
-rm -rf ${OLD_REV}
 
+if [ -L ${DEST} ]; then
+	OLD_REV=`readlink -nf ${DEST}`
+fi
+ln -s ${NEW_REV} ${DEST}
+if [ -o ${OLD_REV} ]; then
+	rm -rf ${OLD_REV}
+	unset OLD_REV
+fi
 
 DEST=/custom/puppet
 REVS_DIR=/custom/.puppet_revs
@@ -19,6 +24,12 @@ TMP_REV=/custom/puppet
 
 mkdir ${REVS_DIR}
 mv ${TMP_REV} ${NEW_REV}
-OLD_REV=`readlink -nf ${DEST}`
+
+if [ -L ${DEST} ]; then
+	OLD_REV=`readlink -nf ${DEST}`
+fi
 ln -s ${NEW_REV} ${DEST}
-rm -rf ${OLD_REV}
+if [ -o ${OLD_REV} ]; then
+	rm -rf ${OLD_REV}
+	unset OLD_REV
+fi
