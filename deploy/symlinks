@@ -6,9 +6,9 @@ NEW_REV=${REVS_DIR}/${DEPLOYMENT_ID}
 TMP_REV=/custom/.scripts~
 
 mkdir -p ${REVS_DIR}
-mv ${TMP_REV} ${NEW_REV}
-ln -fs ${NEW_REV} ${DEST}
-find ${REVS_DIR} -maxdepth 1 -mindepth 1  ! -name ${DEPLOYMENT_ID} -exec rm -rf {} \;
+mv ${TMP_REV} ${NEW_REV} && \
+ln -s ${NEW_REV} ${DEST} && \
+find ${REVS_DIR} -maxdepth 1 -mindepth 1 ! -name ${DEPLOYMENT_ID} -exec rm -rf {} \;
 
 DEST=/custom/puppet
 REVS_DIR=/custom/.puppet_revs
@@ -16,6 +16,6 @@ NEW_REV=${REVS_DIR}/${DEPLOYMENT_ID}
 TMP_REV=/custom/.puppet~
 
 mkdir -p ${REVS_DIR}
-mv ${TMP_REV} ${NEW_REV}
-ln -fs ${NEW_REV} ${DEST}
-find ${REVS_DIR} -maxdepth 1 -mindepth 1  ! -name ${DEPLOYMENT_ID} -exec rm -rf {} \;
+mv ${TMP_REV} ${NEW_REV} && \
+ln -s ${NEW_REV} ${DEST} && \
+find ${REVS_DIR} -maxdepth 1 -mindepth 1 ! -name ${DEPLOYMENT_ID} -exec rm -rf {} \;
