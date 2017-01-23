@@ -2,10 +2,10 @@ version: 0.0
 os: linux
 files:
   - source: /scripts
-    destination: /custom/scripts
+    destination: /custom/.scripts~
     overwrite: yes
   - source: /puppet
-    destination: /custom/puppet
+    destination: /custom/.puppet~
     overwrite: yes
   - source: /files/deploy_previous_revision
     destination: /usr/local/bin
@@ -23,6 +23,9 @@ hooks:
       timeout: 100
       runas: root
   AfterInstall:
+    - location: deploy/symlinks
+      timeout: 900
+      runas: deploy
     - location: deploy/cron
       timeout: 900
       runas: deploy
