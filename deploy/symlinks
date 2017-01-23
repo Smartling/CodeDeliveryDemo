@@ -7,15 +7,8 @@ TMP_REV=/custom/.scripts~
 
 mkdir -p ${REVS_DIR}
 mv ${TMP_REV} ${NEW_REV}
-
-if [ -L ${DEST} ]; then
-	OLD_REV=`readlink -nf ${DEST}`
-fi
 ln -fs ${NEW_REV} ${DEST}
-if [ -o ${OLD_REV} ]; then
-	rm -rf ${OLD_REV}
-	unset OLD_REV
-fi
+find ${REVS_DIR} -maxdepth 1 -mindepth 1  ! -name ${DEPLOYMENT_ID} -exec rm -rf {} \;
 
 DEST=/custom/puppet
 REVS_DIR=/custom/.puppet_revs
@@ -24,12 +17,5 @@ TMP_REV=/custom/.puppet~
 
 mkdir -p ${REVS_DIR}
 mv ${TMP_REV} ${NEW_REV}
-
-if [ -L ${DEST} ]; then
-	OLD_REV=`readlink -nf ${DEST}`
-fi
 ln -fs ${NEW_REV} ${DEST}
-if [ -o ${OLD_REV} ]; then
-	rm -rf ${OLD_REV}
-	unset OLD_REV
-fi
+find ${REVS_DIR} -maxdepth 1 -mindepth 1  ! -name ${DEPLOYMENT_ID} -exec rm -rf {} \;
