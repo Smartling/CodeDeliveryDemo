@@ -220,6 +220,7 @@ EOF
 output "access_key_secrets" {
   value = "${aws_iam_access_key.github_user.secret}"
 }
+
 output "access_key" {
   value = "${aws_iam_access_key.github_user.id}"
 }
