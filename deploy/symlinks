@@ -11,7 +11,7 @@ mv ${TMP_REV} ${NEW_REV}
 if [ -L ${DEST} ]; then
 	OLD_REV=`readlink -nf ${DEST}`
 fi
-ln -s ${NEW_REV} ${DEST}
+ln -fs ${NEW_REV} ${DEST}
 if [ -o ${OLD_REV} ]; then
 	rm -rf ${OLD_REV}
 	unset OLD_REV
@@ -28,7 +28,7 @@ mv ${TMP_REV} ${NEW_REV}
 if [ -L ${DEST} ]; then
 	OLD_REV=`readlink -nf ${DEST}`
 fi
-ln -s ${NEW_REV} ${DEST}
+ln -fs ${NEW_REV} ${DEST}
 if [ -o ${OLD_REV} ]; then
 	rm -rf ${OLD_REV}
 	unset OLD_REV
