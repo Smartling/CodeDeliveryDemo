@@ -5,7 +5,7 @@ REVS_DIR=/custom/.scripts_revs
 NEW_REV=${REVS_DIR}/${DEPLOYMENT_ID}
 TMP_REV=/custom/.scripts~
 
-mkdir ${REVS_DIR}
+mkdir -p ${REVS_DIR}
 mv ${TMP_REV} ${NEW_REV}
 
 if [ -L ${DEST} ]; then
@@ -20,9 +20,9 @@ fi
 DEST=/custom/puppet
 REVS_DIR=/custom/.puppet_revs
 NEW_REV=${REVS_DIR}/${DEPLOYMENT_ID}
-TMP_REV=/custom/puppet
+TMP_REV=/custom/.puppet~
 
-mkdir ${REVS_DIR}
+mkdir -p ${REVS_DIR}
 mv ${TMP_REV} ${NEW_REV}
 
 if [ -L ${DEST} ]; then
